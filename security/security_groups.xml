@@ -1,0 +1,16 @@
+<odoo>
+    <!-- Groupe "case à cocher" : coché = modification bloquée -->
+    <record id="group_stock_location_editor" model="res.groups">
+        <field name="name">Bloquer la modification des emplacements de stock</field>
+        <field name="category_id" eval="False"/>
+        <!-- category_id explicitement mis à False : sans cette ligne, une mise à
+             jour (-u) ne réinitialise PAS un champ déjà présent en base (Odoo ne
+             touche que les champs explicitement listés dans le XML) -->
+    </record>
+
+    <!-- Note : l'affectation initiale de tous les utilisateurs à ce groupe
+         (coché par défaut) est faite par un post_init_hook (voir __init__.py),
+         PAS par implied_ids, car un groupe impliqué reste coché et non
+         modifiable dans l'interface — ce qui empêcherait de décocher pour
+         autoriser un utilisateur précis. -->
+</odoo>
